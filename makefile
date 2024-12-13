@@ -17,13 +17,12 @@ setup-env:
 	@make install-requirements
 # I know I used python3 to create venv but using just python ensure that the venv is used because this alias doesn't exist outside of venv in mac and linux 
 run:
-	@echo "Running the app in the venv"
-	@make setup-env
-	@python src/app.py
+	@echo "Running the app"
+# Launch the api in detached mode if you want to reload it you may need to kill the old process
+	@python src/app.py & 
 
 test-api:
 	@echo "Testing the api via the virtual environment"
-	@make setup-env
 	@python src/test.py
 
 init-container:
