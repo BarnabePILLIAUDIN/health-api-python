@@ -4,6 +4,7 @@ on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: Runs tests
+    environment: CI
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -14,4 +15,12 @@ jobs:
       - name: Install deps
         run: make install-requirements
       - name: Runs test
-        run: python src/test.py
+        run: make test
+        env:
+          API_HOST: ${{ vars.API_HOST }}
+          API_PORT: ${{ vars.API_PORT}}
+          TEST_API_PORT: ${{ vars.TEST_API_PORT }}
+          TEST_API_HOST: ${{ vars.TEST_API_HOST }}
+          MAKE_IMAGE_NAME: ${{ vars.MAKE_IMAGE_NAME}}
+          MAKE_CONTAINER_NAME: ${{ vars.MAKE_CONTAINER_NAME}}
+          MAKE_HOST_PORT: ${{ vars.MAKE_HOST_PORT}}
