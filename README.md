@@ -36,3 +36,7 @@ This api will allow you to know your BMI and your BMR.
 - Install the dependencies `pip install -r requirements.txt`
 - Start the app `python src/app.py`
 - Run the tests `python src/test.py`
+
+# Warning
+
+- The tests are composed of unit tests and api tests. So you need the api to be running to run the tests.
