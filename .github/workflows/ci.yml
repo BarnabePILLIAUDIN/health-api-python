@@ -2,7 +2,7 @@ name: Test and deploy
 
 on: [push, workflow_dispatch]
 jobs:
-  build:
+  run-tests:
     runs-on: ubuntu-latest
     environment: CI
     steps:
@@ -13,9 +13,9 @@ jobs:
         with:
           python-version: 3.13
       - name: Install deps
-        run: make install-requirements
+        run: pip install -r requirements.txt
       - name: Runs test
-        run: make test
+        run: python src/test.py
         env:
           API_HOST: ${{ vars.API_HOST }}
           API_PORT: ${{ vars.API_PORT}}
