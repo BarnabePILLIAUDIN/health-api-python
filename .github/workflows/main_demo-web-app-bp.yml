@@ -30,10 +30,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # - name: Put the app folder on the right place
-      #   run: |
-      #     cp -r src/* .
-
+      # p folder on the right place
+      # 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
@@ -70,11 +68,10 @@ jobs:
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4928A6E4F4DB4FC0A4FC6D122123D777 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_70E62BEE7E5F432CAB038210C16E40DD }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F562EFAB4155479FBCF6F2CF40BD82A5 }}
+          subs'ription-id: ${{ secrets'AZUREAPPSERVICE_SUBSCRIPTIONID_F562EFAB4155479FBCF6F2CF40BD82A5 }}
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v3
-        id: deploy-to-webapp
-        with:
-          app-name: "demo-web-app-bp"
+        id: deploy-t'-webapp'
+        with:'       '  app-name: "demo-web-app-bp"
           slot-name: "Production"
