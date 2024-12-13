@@ -5,6 +5,14 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
     environment: CI
+    env:
+      API_HOST: ${{ vars.API_HOST }}
+      API_PORT: ${{ vars.API_PORT}}
+      TEST_API_PORT: ${{ vars.TEST_API_PORT }}
+      TEST_API_HOST: ${{ vars.TEST_API_HOST }}
+      MAKE_IMAGE_NAME: ${{ vars.MAKE_IMAGE_NAME}}
+      MAKE_CONTAINER_NAME: ${{ vars.MAKE_CONTAINER_NAME}}
+      MAKE_HOST_PORT: ${{ vars.MAKE_HOST_PORT}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -14,13 +22,7 @@ jobs:
           python-version: 3.13
       - name: Install deps
         run: pip install -r requirements.txt
+      - name: Start the API locally to be tested by CI
+        run: python src/app.py &
       - name: Runs test
         run: python src/test.py
-        env:
-          API_HOST: ${{ vars.API_HOST }}
-          API_PORT: ${{ vars.API_PORT}}
-          TEST_API_PORT: ${{ vars.TEST_API_PORT }}
-          TEST_API_HOST: ${{ vars.TEST_API_HOST }}
-          MAKE_IMAGE_NAME: ${{ vars.MAKE_IMAGE_NAME}}
-          MAKE_CONTAINER_NAME: ${{ vars.MAKE_CONTAINER_NAME}}
-          MAKE_HOST_PORT: ${{ vars.MAKE_HOST_PORT}}
