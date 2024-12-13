@@ -11,10 +11,12 @@ This api will allow you to know your BMI and your BMR.
 
 - To install the project
 - Clone the project
+- Run cp .env.example .env
+- Fill the .env file with the right values
 
 ### To launch it with docker (recommanded)
 
-- run `make init` it will build the image of the api, start the container and run the test to make sure everything is working fine.
+- run `make init-container` it will build the image of the api, start the container and run the test to make sure everything is working fine.
 
 **_If you are on windows you can run the following commands and you don't have make (on MacOs and Linux make should be installed by default) you can run the following commands:_**
 
@@ -23,6 +25,11 @@ This api will allow you to know your BMI and your BMR.
 - `docker exec -it python-api-bp python src/test.py`
 
 ### To run it with a virtual environment
+
+- Run `make-init`
+- To test the api run `make test-api`
+
+**_If you are on windows you can run the following commands and you don't have make (on MacOs and Linux make should be installed by default) you can run the following commands:_**
 
 - Create a virtual environment `python3 -m venv venv`
 - Activate the virtual environment `source venv/bin/activate`
