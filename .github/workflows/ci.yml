@@ -1,0 +1,17 @@
+name: Test and deploy
+
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: Runs tests
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.13
+      - name: Install deps
+        run: make install-requirements
+      - name: Runs test
+        run: python src/test.py

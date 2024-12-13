@@ -14,9 +14,7 @@ setup-env:
 	@python3 -m venv venv
 	@echo "Ensuring that the venv is activated"
 	@source venv/bin/activate
-	@echo "Ensuring that the requirements are satisfied"
-	@pip install -r requirements.txt
-
+	@make install-requirements
 # I know I used python3 to create venv but using just python ensure that the venv is used because this alias doesn't exist outside of venv in mac and linux 
 run:
 	@echo "Running the app in the venv"
@@ -50,3 +48,7 @@ build:
 stop-container:
 	@echo "Stopping the containers"
 	@docker stop ${MAKE_CONTAINER_NAME}
+
+install-requirements:
+	@echo "Installing requirements"
+	@pip install -r requirements.txt
