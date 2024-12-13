@@ -23,7 +23,7 @@ jobs:
       - name: Create a fake .env
         run: touch .env
       - name: Install requirement
-        run: make install requirements
+        run: make install-requirements
       # If there is no .env the make command won't work
       # Injecting directly the variables in the makefile would be a big security risk by forcing us to commit the env vars
       - name: Run the api
