@@ -12,7 +12,8 @@ PORT=getenv("API_PORT")
 HOST=getenv("API_HOST")
 
 if not PORT or not HOST:
-    raise Exception("API_PORT and API_HOST are required in .env file")
+  HOST = "0.0.0.0"
+  PORT = 80
 
 app = Flask(__name__)
 
