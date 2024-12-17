@@ -40,3 +40,5 @@ This api will allow you to know your BMI and your BMR.
 # Warning
 
 - The tests are composed of unit tests and api tests. So you need the api to be running to run the tests.
+
+- `THE DEPLOYMENT IS FOLLOWING THE BRANCH`
