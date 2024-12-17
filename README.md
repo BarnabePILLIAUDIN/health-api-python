@@ -42,3 +42,28 @@ This api will allow you to know your BMI and your BMR.
 - The tests are composed of unit tests and api tests. So you need the api to be running to run the tests.
 
 - `THE DEPLOYMENT IS FOLLOWING THE BRANCH`
+
+# INFO
+
+URL: Of the api: https://prod-app-barnabe-pilliaudin-ckbecfhkhxg9ezhs.francecentral-01.azurewebsites.net/[ENDPOINT]
+Expample of valid body.
+
+For /bmi
+
+```json
+{
+	"weight": 65,
+	"height": 1.78
+}
+```
+
+For /bmr
+
+```json
+{
+	"weight": 65,
+	"height": 1.78,
+	"age": 21,
+	"gender": "male"
+}
+```
