@@ -2,12 +2,12 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - demo-web-app-bp
+name: Build and deploy Python app to Azure Web App - prod-app-barnabe-pilliaudin
 
 on:
   push:
     branches:
-      - main
+      - prod
   workflow_dispatch:
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.11"
 
       - name: Create and start virtual environment
         run: |
@@ -30,8 +30,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # p folder on the right place
-      #
+      - name: Copy src files at root of app
+        run: |
+          cp -r src/* .
+
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
@@ -66,11 +68,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4928A6E4F4DB4FC0A4FC6D122123D777 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_83EBA628F25A4018AB23504BEF4054A8 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A2293281C7EF4C68A8308CA098A152C9 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6D783C7AE08344F980CE1D02EA71BA95 }}
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: "demo-web-app-bp"
+          app-name: "prod-app-barnabe-pilliaudin"
           slot-name: "Production"
+          startup-command: "gunicorn app:app"
